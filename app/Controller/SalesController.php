@@ -21,7 +21,13 @@ class SalesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Sale->recursive = 0;
+		$this->Sale->recursive = 0;// $this-модель-свойство модели, которое показывает
+		//насколько глубоко в ассоциацию мы заглядываем
+		//0 - это sale и все что напрямую завязано sales+users
+		$this->Paginator->settings = array(
+			'limit' => 10,
+			'order' => array('Sale.created' => 'DESC')
+		);
 		$this->set('sales', $this->Paginator->paginate());
 	}
 
