@@ -39,6 +39,7 @@ class SalesController extends AppController {
  * @return void
  */
 	public function view($id = null) {// $this->referer() - страница откуда перешли
+//		$this->redirect($this->referer());
 		if (!$this->Sale->exists($id)) {
 			throw new NotFoundException(__('Invalid sale'));
 		}
@@ -80,7 +81,7 @@ class SalesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Sale->save($this->request->data)) {
 				$this->Flash->success(__('The sale has been saved.'));
-//				return $this->redirect(array('controller' => 'users', 'action' => 'index'));//пересмотри в докуменации редирект
+				//return $this->redirect(array('controller' => 'users', 'action' => 'index'));//пересмотри в докуменации редирект
 			} else {
 				$this->Flash->error(__('The sale could not be saved. Please, try again.'));
 			}
